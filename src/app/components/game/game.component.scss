@@ -1,0 +1,63 @@
+.game-wrapper {
+    height: 100vh;
+    .title {
+        height: 10vh;
+        font-family: cursive;
+        font-size: 24px;
+        text-align: center;
+        padding: 24px;
+        font-weight: bold;
+        background-color: lawngreen;
+    }
+    .board {
+        height: 75vh;
+        // background-color: black;
+        .grid {
+            height: 100%;
+            width: 75vh;
+            margin: auto;
+            display: grid;
+            justify-content: normal;
+            align-items: normal;
+            border: 1px solid;
+            &.isdebug-mode{
+                border: none;
+            }
+            .row {
+                display: flex;
+                width: 100%;
+                .cell {
+                    flex: 1;
+                    &.is-snake {
+                        background-color: green;
+                    }
+                    &.is-food {
+                        background-color: red;
+                    }
+                }
+            }
+            .row.is-debug-mode {
+                border-bottom: 1px solid;
+                &:first-child {
+                    border-top: 1px solid;
+                }
+                .cell.is-debug-mode {
+                    border-right: 1px solid;
+                    &:first-child{
+                        border-left: 1px solid;
+                    }
+                }
+            }
+        }
+    }
+    .controls {
+        height: 15vh;
+        background-color: gray;
+        .start-restart, .directions {
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+            padding: 24px;
+        }
+    }
+}

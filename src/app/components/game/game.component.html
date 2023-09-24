@@ -1,0 +1,46 @@
+<div class="game-wrapper">
+
+    <div class="title">SNAKE GAME</div>
+
+    <!-- GAME DISPLAY -->
+    <div class="board">
+        <div class="grid" [ngClass]="{'is-debug-mode': enableDebugMode}">
+            <ng-container *ngFor="let i of tempArray, index as indexA">
+                <div class="row" [ngClass]="{'is-debug-mode': enableDebugMode}">
+                    <ng-container *ngFor="let j of tempArray, index as indexB">
+                        <div id="cell-{{indexA}}-{{indexB}}" class="cell"
+                            [ngClass]="{
+                                'is-snake': GRID[indexA*BOARD_SIZE+indexB].isSnake,
+                                'is-food': GRID[indexA*BOARD_SIZE+indexB].isFood,
+                                'is-debug-mode': enableDebugMode
+                            }"
+                        >
+                            <ng-container *ngIf="enableDebugMode">{{GRID[indexA*BOARD_SIZE+indexB].id}}</ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <!-- GAME CONTROLS -->
+    <div class="controls">
+        <div class="start-restart">
+            <button type="button" (click)="startGame()" [disabled]="gameStarted">START</button>
+            <button type="button" (click)="restartGame()" [disabled]="!gameStarted">RESTART</button>
+        </div>
+        <div class="directions">
+            <div class="direction">
+                <button type="button" (click)="changeDirection(DIRECTIONS.UP)">UP</button>
+            </div>
+            <div class="direction">
+                <button type="button" (click)="changeDirection(DIRECTIONS.LEFT)">LEFT</button>
+                <button type="button" (click)="changeDirection(DIRECTIONS.RIGHT)">RIGHT</button>
+            </div>
+            <div class="direction">
+                <button type="button" (click)="changeDirection(DIRECTIONS.DOWN)">DOWN</button>
+            </div>
+        </div>
+    </div>
+
+</div>
