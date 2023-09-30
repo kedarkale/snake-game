@@ -75,13 +75,14 @@ export class GameComponent implements OnInit {
       isFood: false,      
       movingIn: Directions.RIGHT
     }});
+    this.Score = 0
     this.gameStarted = false;
     this.currentDirection = Directions.RIGHT;
     this.gameStarted = false;
+    this.GRID[3].isSnake = true;
+    this.GRID[3].isSnakeHead = true;
     this.GRID[2].isSnake = true;
-    this.GRID[2].isSnakeHead = true;
     this.GRID[1].isSnake = true;
-    this.GRID[1].isSnakeHead = false;
     this.GRID[0].isSnake = true;
     this.GRID[0].isSnakeTail = true;
     this.addFoodToRandomCell();
@@ -153,9 +154,9 @@ export class GameComponent implements OnInit {
   }
 
   checkCollision(): boolean {
-    // todo: check collision with self
     let headIndex = this.getSnakeHeadIndex();
     let nextMoveIndex = this.getNextCellIndex(headIndex, this.GRID[headIndex].movingIn)
+    // out of board
     if (
       nextMoveIndex < 0 ||
       nextMoveIndex >= this.BOARD_SIZE*this.BOARD_SIZE ||
@@ -163,6 +164,12 @@ export class GameComponent implements OnInit {
       (nextMoveIndex%this.BOARD_SIZE == this.BOARD_SIZE-1 && headIndex%this.BOARD_SIZE == 0)
     ) {
       alert(`Collision! Game Over! Your Score was ${this.Score}`);
+      this.setStartState();
+      return true;
+    }
+    // collision with self
+    if (this.GRID[nextMoveIndex].isSnake) {
+      alert(`Collision with self! Game Over! Your Score was ${this.Score}`);
       this.setStartState();
       return true;
     }

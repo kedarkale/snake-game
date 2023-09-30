@@ -1,6 +1,9 @@
 <div class="game-wrapper">
 
-    <div class="title">SNAKE GAME</div>
+    <div class="title">
+        <span class="main">SNAKE GAME</span><br>
+        <span class="sub">Score: {{Score}}</span>
+    </div>
 
     <!-- GAME DISPLAY -->
     <div class="board">
@@ -40,6 +43,7 @@
             <div class="direction">
                 <button type="button" (click)="changeDirection(DIRECTIONS.DOWN)">DOWN</button>
             </div>
+            <div>Also, snake can be controlled using WASD keys</div>
         </div>
     </div>
 
