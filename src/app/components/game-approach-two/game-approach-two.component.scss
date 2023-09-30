@@ -8,6 +8,11 @@
         padding: 24px;
         font-weight: bold;
         background-color: lawngreen;
+        .score {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+        }
     }
     .board {
         height: 75vh;
@@ -53,11 +58,12 @@
     .controls {
         height: 15vh;
         background-color: gray;
+        display: flex;
+        align-items: center;
         .start-restart, .directions {
             display: inline-block;
             width: 50%;
             text-align: center;
-            padding: 24px;
         }
     }
 }
