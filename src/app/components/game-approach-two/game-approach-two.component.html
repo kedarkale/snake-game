@@ -1,0 +1,44 @@
+<div class="game-wrapper">
+
+    <div class="title">
+        <span class="main">SNAKE GAME</span><br>
+        <span class="sub">Score: {{score}}</span>
+    </div>
+
+    <!-- GAME DISPLAY -->
+    <div class="board">
+        <div class="grid" [ngClass]="{'is-debug-mode': enableDebugMode}">
+            <ng-container *ngFor="let i of tempArray, index as indexA">
+                <div class="row" [ngClass]="{'is-debug-mode': enableDebugMode}">
+                    <ng-container *ngFor="let j of tempArray, index as indexB">
+                        <div id="cell-{{indexA*BOARD_SIZE+indexB}}" class="cell" [ngClass]="{ 'is-debug-mode': enableDebugMode }">
+                            <ng-container *ngIf="enableDebugMode">{{indexA*BOARD_SIZE+indexB}}</ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <!-- GAME CONTROLS -->
+    <div class="controls">
+        <div class="start-restart">
+            <button type="button" (click)="startGame()" [disabled]="gameStarted">START</button>
+            <button type="button" (click)="restartGame()" [disabled]="!gameStarted">RESTART</button>
+        </div>
+        <div class="directions">
+            <div class="direction">
+                <button type="button" (click)="changeDirection(DIRECTIONS.UP)">UP</button>
+            </div>
+            <div class="direction">
+                <button type="button" (click)="changeDirection(DIRECTIONS.LEFT)">LEFT</button>
+                <button type="button" (click)="changeDirection(DIRECTIONS.RIGHT)">RIGHT</button>
+            </div>
+            <div class="direction">
+                <button type="button" (click)="changeDirection(DIRECTIONS.DOWN)">DOWN</button>
+            </div>
+            <div>Snake can also be controlled using WASD keys</div>
+        </div>
+    </div>
+
+</div>

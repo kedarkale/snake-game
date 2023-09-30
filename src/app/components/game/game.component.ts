@@ -10,9 +10,7 @@ export enum Directions {
 @Component({
   selector: 'app-game',
   templateUrl: "./game.component.html",
-  styleUrls: ["./game.component.scss"],
-  styles: [
-  ]
+  styleUrls: ["./game.component.scss"]
 })
 
 export class GameComponent implements OnInit {
@@ -78,7 +76,6 @@ export class GameComponent implements OnInit {
     this.Score = 0
     this.gameStarted = false;
     this.currentDirection = Directions.RIGHT;
-    this.gameStarted = false;
     this.GRID[3].isSnake = true;
     this.GRID[3].isSnakeHead = true;
     this.GRID[2].isSnake = true;
@@ -93,7 +90,7 @@ export class GameComponent implements OnInit {
     // game loop
     this.gameLoopInterval = setInterval(() => {
       if (!this.checkCollision()) {
-        this.moveSnake();        
+        this.moveSnake();
       }
     }, 300)
   }
