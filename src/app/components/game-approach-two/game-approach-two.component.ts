@@ -16,15 +16,15 @@ export class GameApproachTwoComponent implements AfterViewInit {
 
   enableDebugMode = false;
   DIRECTIONS = Directions;
-  BOARD_SIZE: number = 25;
-  BOARD_REFRESH_INTERVAL_MS = 150;
+  BOARD_SIZE: number = 50;
+  BOARD_REFRESH_INTERVAL_MS = 41.67; // also controls snake speed, higher refresh interval == slower snake. currently set to emulate 24FPS
   tempArray: Array<number> = Array(this.BOARD_SIZE);
   snakeCellIndexes: number[] = [];
   foodCellIndex: number | undefined;
   gameStarted: boolean = false;
   currentDirection = Directions.RIGHT;
-  gameLoopInterval = setInterval(() => {}, 0);
-  score = 0
+  score = 0;
+  currentTimestamp = 0;
 
   @HostListener("document:keypress", ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {    
@@ -58,7 +58,6 @@ export class GameApproachTwoComponent implements AfterViewInit {
   }
 
   setStartState() {
-    clearInterval(this.gameLoopInterval);
     this.gameStarted = false;
     this.score= 0;
     this.snakeCellIndexes = [3, 2, 1, 0];
@@ -70,11 +69,18 @@ export class GameApproachTwoComponent implements AfterViewInit {
   startGame() {
     this.gameStarted = true;
     // game loop
-    this.gameLoopInterval = setInterval(() => {
+    requestAnimationFrame(this.generateFrame.bind(this));    
+  }
+
+  generateFrame(latestTimestamp: number) {
+    if (latestTimestamp - this.currentTimestamp >= this.BOARD_REFRESH_INTERVAL_MS) {
+      this.currentTimestamp = latestTimestamp;
       if (!this.checkCollision()) {
         this.moveSnake();
       }
-    }, this.BOARD_REFRESH_INTERVAL_MS)
+    }
+
+    if (this.gameStarted) requestAnimationFrame(this.generateFrame.bind(this));
   }
 
   restartGame() {
