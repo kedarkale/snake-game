@@ -16,8 +16,9 @@ export class GameApproachTwoComponent implements AfterViewInit {
 
   enableDebugMode = false;
   DIRECTIONS = Directions;
-  BOARD_SIZE: number = 50;
-  BOARD_REFRESH_INTERVAL_MS = 41.67; // also controls snake speed, higher refresh interval == slower snake. currently set to emulate 24FPS
+  BOARD_SIZE: number = 25;
+  BOARD_REFRESH_INTERVAL_MS = 150; // also controls snake speed, higher refresh interval == slower snake
+  MIN_INTERVAL_LIMIT = 16.67; // controls max snake speed limit, also 60 FPS
   tempArray: Array<number> = Array(this.BOARD_SIZE);
   snakeCellIndexes: number[] = [];
   foodCellIndex: number | undefined;
@@ -59,6 +60,7 @@ export class GameApproachTwoComponent implements AfterViewInit {
 
   setStartState() {
     this.gameStarted = false;
+    this.BOARD_REFRESH_INTERVAL_MS = 150;
     this.score= 0;
     this.snakeCellIndexes = [3, 2, 1, 0];
     this.currentDirection = Directions.RIGHT;
@@ -93,12 +95,17 @@ export class GameApproachTwoComponent implements AfterViewInit {
     // food handling
     if (nextCell == this.foodCellIndex) {
       foodConsumed = true;
-      this.score++;
-      this.addFoodToRandomCell(true);
+      this.consumeFood();
     }
     this.snakeCellIndexes.unshift(nextCell);
     if (!foodConsumed) this.snakeCellIndexes.pop();
     this.updateBoardState();
+  }
+
+  consumeFood() {
+    this.score++;
+    this.addFoodToRandomCell(true);
+    if (this.BOARD_REFRESH_INTERVAL_MS > this.MIN_INTERVAL_LIMIT) this.BOARD_REFRESH_INTERVAL_MS-=5; 
   }
 
   updateBoardState() {
