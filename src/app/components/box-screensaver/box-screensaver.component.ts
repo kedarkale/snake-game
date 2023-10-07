@@ -29,7 +29,6 @@ export class BoxScreensaverComponent implements AfterViewInit, AfterViewChecked 
   ngAfterViewChecked(): void {    
     this.canvasHeight = document.body.getBoundingClientRect().height - 2;
     this.canvasWidth = document.body.getBoundingClientRect().width - 2;
-    console.log(this.canvasHeight, this.canvasWidth);
   }
 
   drawBox(latestTimeStamp: number) {
