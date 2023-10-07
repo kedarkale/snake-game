@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
 import { GameApproachTwoComponent } from './components/game-approach-two/game-approach-two.component';
+import { BoxScreensaverComponent } from './components/box-screensaver/box-screensaver.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    GameApproachTwoComponent
+    GameApproachTwoComponent,
+    BoxScreensaverComponent,
   ],
   imports: [
     BrowserModule,

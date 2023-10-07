@@ -10,4 +10,5 @@ The classic snake game using HTML, JS and CSS.
 
 ### Run the application
 - Run `ng serve` and navigate to `http://localhost:4200/`.
+- For the classic box screensaver go to `http://localhost:4200/screensaver`
 
