@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
 import { GameApproachTwoComponent } from './components/game-approach-two/game-approach-two.component';
 import { BoxScreensaverComponent } from './components/box-screensaver/box-screensaver.component';
+import { CanvasOneComponent } from './components/canvas-one/canvas-one.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { BoxScreensaverComponent } from './components/box-screensaver/box-screen
     GameComponent,
     GameApproachTwoComponent,
     BoxScreensaverComponent,
+    CanvasOneComponent
   ],
   imports: [
     BrowserModule,

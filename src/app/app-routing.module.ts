@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GameComponent } from './components/game/game.component';
 import { GameApproachTwoComponent } from './components/game-approach-two/game-approach-two.component';
 import { BoxScreensaverComponent } from './components/box-screensaver/box-screensaver.component';
+import { CanvasOneComponent } from './components/canvas-one/canvas-one.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     title: "Good ol' screensaver",
     path: "screensaver",
     component: BoxScreensaverComponent
+  },
+  {
+    title: "Snake Game - using canvas",
+    path: "canvas",
+    component: CanvasOneComponent
   }
 ];
 

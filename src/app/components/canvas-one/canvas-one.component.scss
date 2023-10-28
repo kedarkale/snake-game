@@ -1,0 +1,30 @@
+.game-wrapper {
+    height: 100vh;
+    .title {
+        height: 10vh;
+        font-family: cursive;
+        font-size: 24px;
+        text-align: center;
+        padding: 24px;
+        font-weight: bold;
+        background-color: lawngreen;
+    }
+    .board {
+        height: 75vh;
+        text-align: center;
+        // background-color: black;
+        .snake-game-canvas{
+            border: 1px solid;
+        }
+    }
+    .controls {
+        height: 15vh;
+        background-color: gray;
+        .start-restart, .directions {
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+            padding: 24px;
+        }
+    }
+}
